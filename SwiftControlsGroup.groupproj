@@ -1,0 +1,36 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{96C4EF01-31E7-48B5-8BA8-D6B4178973BD}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="SwiftControls.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="SwiftControls">
+			<MSBuild Projects="SwiftControls.dproj"/>
+		</Target>
+		<Target Name="SwiftControls:Clean">
+			<MSBuild Targets="Clean" Projects="SwiftControls.dproj"/>
+		</Target>
+		<Target Name="SwiftControls:Make">
+			<MSBuild Targets="Make" Projects="SwiftControls.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="SwiftControls"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="SwiftControls:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="SwiftControls:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>
