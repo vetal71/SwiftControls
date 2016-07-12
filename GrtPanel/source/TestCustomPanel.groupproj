@@ -1,0 +1,48 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{8A1244EF-50FB-465D-815D-747AFD2893C3}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="CustomPanel.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="package\GrtPanelPackage.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="CustomPanel">
+			<MSBuild Projects="CustomPanel.dproj"/>
+		</Target>
+		<Target Name="CustomPanel:Clean">
+			<MSBuild Targets="Clean" Projects="CustomPanel.dproj"/>
+		</Target>
+		<Target Name="CustomPanel:Make">
+			<MSBuild Targets="Make" Projects="CustomPanel.dproj"/>
+		</Target>
+		<Target Name="GrtPanelPackage">
+			<MSBuild Projects="package\GrtPanelPackage.dproj"/>
+		</Target>
+		<Target Name="GrtPanelPackage:Clean">
+			<MSBuild Targets="Clean" Projects="package\GrtPanelPackage.dproj"/>
+		</Target>
+		<Target Name="GrtPanelPackage:Make">
+			<MSBuild Targets="Make" Projects="package\GrtPanelPackage.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="CustomPanel;GrtPanelPackage"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="CustomPanel:Clean;GrtPanelPackage:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="CustomPanel:Make;GrtPanelPackage:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>
